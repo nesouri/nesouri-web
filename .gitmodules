@@ -1,0 +1,3 @@
+[submodule "src/js/gme"]
+	path = src/js/gme
+	url = https://github.com/nesouri/game-music-emu.git
