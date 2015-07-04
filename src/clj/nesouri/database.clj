@@ -83,7 +83,7 @@
 
 (defn show-artist [artist_id]
   (let [result (first (select persons
-                              (with games (fields :game_id :title :year :date)
+                              (with games (fields :game_id :title :year :date :developer_id :publisher_id)
                                     (order :year) (order :date)
                                     (with developers)
                                     (with publishers))

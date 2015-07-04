@@ -16,8 +16,8 @@
    (dom/tr
     (dom/td (dom/a {:href (str "#/details/" (:game_id game))} (:title game)))
     (dom/td (or (:date game) (:year game)))
-    (dom/td (:developer game))
-    (dom/td (:publisher game)))))
+    (dom/td (dom/a {:href (str "#/organizations/" (:developer_id game))} (:developer game)))
+    (dom/td (dom/a {:href (str "#/organizations/" (:publisher_id game))} (:publisher game))))))
 
 (defcomponent show-artist
   [app owner]
