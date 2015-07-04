@@ -84,7 +84,6 @@
           audio-context (js/AudioContext.)
           audio-node (.. audio-context (createScriptProcessor (/ buffer-size channels-out) channels-in channels-out))
           audio-buffer (gme/buffer buffer-size)]
-      (.log js/console "init-state")
       (set! (.. audio-node -onaudioprocess) #(playback-loop owner %)) ;; should bind in will-mount, same for audio context/node
       {:audio-context audio-context
        :audio-node audio-node
@@ -100,7 +99,6 @@
     (let [audio-context (om/get-state owner :audio-context)
           audio-node (om/get-state owner :audio-node)
           player-chan (om/get-state owner :player-chan)]
-      (.log js/console "will-mount")
       (.. audio-node (connect (. audio-context -destination)))
       (go (loop []
             (let [[track game_id] (<! player-chan)]
@@ -109,7 +107,6 @@
                         :on-complete (fn [m] (load-track owner track m))})
               (recur))))))
   (will-unmount [_]
-                (.log js/console "will-unmount")
     (.disconnect (om/get-state owner :audio-node))
     (.close (om/get-state owner :audio-context)))
   (render-state [_ state]

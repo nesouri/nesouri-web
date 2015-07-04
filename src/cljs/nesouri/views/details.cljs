@@ -49,7 +49,6 @@
                                             (dom/dt "Links:")
                                             (dom/dd
                                              (dom/ul
-                                              (.log js/console (:game_links metadata))
                                               (map (fn [link]
                                                      (dom/li (dom/a {:href (:url link)} (:name link))))
                                                    (:game_links metadata))))))))

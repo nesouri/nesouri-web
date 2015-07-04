@@ -50,13 +50,11 @@
        (let [count (+ 1 (. owner -inf-offset))
              limit (. owner -inf-batch-size)
              offset (* count limit)]
-         (.log js/console "Loading more...")
          (.inf-scroll-suspend owner)
          (.inf-loader owner #(.inf-scroll-resume owner owner) limit offset)
          (set! (. owner -inf-offset) count)))))
   (inf-scroll-resume
    [owner]
-   (.log js/console "omg" (. owner -inf-elem))
    (.addEventListener (. owner -inf-elem) "scroll" (. owner -inf-scroll-func)))
   (inf-scroll-suspend
    [owner]
