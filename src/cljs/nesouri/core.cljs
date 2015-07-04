@@ -27,6 +27,9 @@
       options {:target (. js/document (getElementById "app"))
                :state {:player-chan player-chan}}]
 
+  (sec/defroute index-page "/" []
+    (sec/dispatch! "/search"))
+
   (sec/defroute search-page "/search" []
     (om/root search-view app-state options))
 
@@ -48,5 +51,5 @@
 
 (let [current-hash (.. js/window -location -hash)]
   (if (empty? current-hash)
-    (sec/dispatch! "/search")
+    (sec/dispatch! "/")
     (sec/dispatch! (.substring current-hash 1))))
